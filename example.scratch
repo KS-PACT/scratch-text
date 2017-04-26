@@ -1,0 +1,24 @@
+Sprite P38 {
+  variable bullets;
+  global variable score;
+
+  when green flag clicked {
+    set bullets to 4;
+    forever {
+      if (key down pressed?) {
+        create clone of SmallBullet;
+      }
+      next costume;
+    }
+
+  }
+
+  Control.forever {
+    if (Sensing.keyDown('space')>) {
+      Control.makeCloneOf(Bullet)
+
+    }
+    nextCostume
+  }
+
+}

@@ -1,0 +1,34 @@
+<project> ::= <stage> <sprite-list>
+          | <stage>
+          | <sprite-list>
+          | ""
+
+<stage> ::= <variable-declarations> <block-stacks>
+          | <variable-declarations>
+          | <block-stacks>
+          | ""
+
+<sprite-list> ::= <sprite> <sprite-list>
+          | <sprite>s
+
+
+<sprite> ::= <variable-declarations> <block-stacks>
+          | <variable-declarations>
+          | <block-stacks>
+          | ""
+
+<
+
+<postal-address> ::= <name-part> <street-address> <zip-part>
+
+      <name-part> ::= <personal-part> <last-name> <opt-suffix-part> <EOL>
+                    | <personal-part> <name-part>
+
+  <personal-part> ::= <initial> "." | <first-name>
+
+ <street-address> ::= <house-num> <street-name> <opt-apt-num> <EOL>
+
+       <zip-part> ::= <town-name> "," <state-code> <ZIP-code> <EOL>
+
+<opt-suffix-part> ::= "Sr." | "Jr." | <roman-numeral> | ""
+    <opt-apt-num> ::= <apt-num> | ""
