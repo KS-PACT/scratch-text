@@ -3,42 +3,59 @@
             | <sprite-list>
             | ""
 
-<stage> ::= <variable-declarations> <block-stacks>
-          | <variable-declarations>
-          | <block-stacks>
+<stage> ::= <variable-declaration> <block-stack>
+          | <variable-declaration>
+          | <block-stack>
           | ""
 
 <sprite-list> ::= <sprite> <sprite-list>
                 | <sprite>
 
-<sprite> ::= <variable-declarations> <block-stacks>
-           | <variable-declarations>
-           | <block-stacks>
+<sprite> ::= <variable-declaration> <block-stack>
+           | <variable-declaration>
+           | <block-stack>
            | ""
 
-<variable_declarations> ::= { <modifier> } "variable" <variable_declarator>
+! ------------------------------
+! Implement rule(s) of statement
+! ------------------------------
+<statement> ::= <variable_declaration>
+              | <if_statement>
+              | <when_statement>
+              | <expression> ";"
+              | <statement_block>
+              | ";"
+              | " "
+! -----------------------------------
+! Implement rule(s) for sub-statement
+! -----------------------------------
+<variable_declaration> ::= <modifier> "variable" <variable_declarator> ";"
+<if_statement> ::= "if" "(" <expression> ")" <statement>
+<when_statement> ::= "when" <expression> <statement>
+<statement_block> ::= "{" <statement> "}"
+<expression> ::= <creating_expression>
+               | <identifier>
+               | "(" <expression> ")"
+               | <expression> "." <expression>
+! ------------------------------------------
+! Implement rule(s) for variable declaration
+! ------------------------------------------
 <modifier> ::= ""
              | "global"
 <variable_declarator> ::= <identifier>
-
-<if_statement> ::= "if" "(" <expression> ")" <statement>
-<expression> ::= <creating_expression>
-               | <identifier>
-               | ( "(" <expression> ")" )
-               | ( <expression> ( ( "." <expression> ) ) )
-<creating_expression> ::= "create clone of" <expression>
-<statement> ::= <variable_declarations>
-              | ( <expression> ";" )
-              | ( <statement_block> )
-              | ( ";" )
-<statement_block> ::= "{" { <statement> } "}"
-
 <identifier> ::= <character>
-! -------------------------------------------------
-! All of lines below are from BNF thread of Wiki
-! Source: http://preview.tinyurl.com/qypobwd
-! -------------------------------------------------
+! --------------------------------
+! Implement rule(s) for expression
+! --------------------------------
+<creating_expression> ::= "create clone of" <expression> ";"
 
+
+
+
+! --------------------------------------------------------------
+! All of the code below are from BNF thread in Wikipedia
+! Source: https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form
+! --------------------------------------------------------------
 <postal-address> ::= <name-part> <street-address> <zip-part>
 <name-part> ::= <personal-part> <last-name> <opt-suffix-part> <EOL>
               | <personal-part> <name-part>
